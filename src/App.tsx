@@ -13,8 +13,12 @@ function App() {
   });
 
   useEffect(() => {
-    fetchDogApi();
-  }, []);
+    if (!isLoading) {
+      localStorage.setItem('imageUrl', imageUrl);
+      const dogBreed = imageUrl.split('/')[4];
+      alert(dogBreed);
+    }
+  }, [imageUrl, isLoading]);
 
   if (isLoading) {
     return <h2>Loading...</h2>;
