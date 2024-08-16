@@ -20,6 +20,16 @@ function App() {
     }
   }, [imageUrl, isLoading]);
 
+  useEffect(() => {
+    const localStorageUrl = localStorage.getItem('imageUrl');
+    if (localStorageUrl) {
+      setImageUrl(localStorageUrl);
+      setIsLoading(false);
+    } else {
+      fetchDogApi();
+    }
+  }, []);
+
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
